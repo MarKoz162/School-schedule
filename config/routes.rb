@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations', 
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  resources :users, only: [:show, :index, :destroy] do
+  resources :users, only: [:show, :index, :destroy, :edit, :update] do
     member do
       patch :ban
     end

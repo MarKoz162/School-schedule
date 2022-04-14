@@ -14,3 +14,4 @@ import "@fortawesome/fontawesome-free/css/all"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+global.toastr = require("toastr")
