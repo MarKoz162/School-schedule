@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index, :destroy, :edit, :update] do
     member do
       patch :ban
+      patch :resend_confirmation_instructions
+      patch :resend_invitation
     end
   end
   root 'home#index'
