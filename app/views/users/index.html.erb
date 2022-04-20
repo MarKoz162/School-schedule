@@ -23,8 +23,8 @@ All users
         <td><%= bollean_value(user.created_by_invite?) %></td>
         <td><%= bollean_value(user.invitation_accepted?) %></td>
         <td>
+          <%= link_to "Edit Roles", edit_user_path(user), class: "btn btn-small"%>
           <% if current_user&.admin? %>
-            <%= link_to "Edit Roles", edit_user_path(user), class: "btn btn-small"%>
             <%= link_to ban_status(user), ban_user_path(user),  method: :patch, data: {confirm: "Are you sure?"}, class: "btn btn-small" %>
             <%= link_to "Delete", user,  method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-small" %>
             <% if  user.confirmed? == false && user.created_by_invite? == false %>

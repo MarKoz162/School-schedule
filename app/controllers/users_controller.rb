@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :find_user, expect: [:index]
-  before_action :require_admin, expect: [:index, :show, :resend_invitation]
+  before_action :find_user, except: [:index]
+  before_action :require_admin, except: [:index, :show, :resend_invitation, :edit, :update]
   before_action :require_admin_or_inviter, only: [:resend_invitation]
-  
+  before_action :require_admin_or_owner, only: [:edit, :update]
   
   def index
     @users = User.all
@@ -51,12 +51,16 @@ class UsersController < ApplicationController
   end
 
   def ban
-    if @user.access_locked?
-      @user.unlock_access!
-      redirect_to users_path, notice: "User was unbanned "
+    if @user == current_user
+      redirect_to users_path, notice: "You can't ban yourself "
     else
-      @user.lock_access!
-      redirect_to users_path, notice: "User was banned "
+      if @user.access_locked?
+        @user.unlock_access!
+        redirect_to users_path, notice: "User was unbanned "
+      else
+        @user.lock_access!
+        redirect_to users_path, notice: "User was banned "
+      end
     end
   end
 
@@ -67,7 +71,10 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(*User::ROLES)
+    list_allowed_params = []
+    list_allowed_params += [:name] if current_user == @user
+    list_allowed_params += [*User::ROLES] if current_user.admin?
+    params.require(:user).permit(list_allowed_params)
   end
 
   def require_admin
@@ -77,8 +84,15 @@ class UsersController < ApplicationController
   end
 
   def require_admin_or_inviter
-    @user = User.find(params[:id])
+    find_user
     unless current_user.admin? || @user.invited_by == current_user
+      redirect_to root_path, alert: "You are not authorize to perform this action "
+    end
+  end
+
+  def require_admin_or_owner
+    find_user
+    unless current_user.admin? || current_user == @user
       redirect_to root_path, alert: "You are not authorize to perform this action "
     end
   end
