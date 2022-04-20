@@ -33,5 +33,13 @@ class User < ApplicationRecord
     self.update(student: true)
   end
 
+  def to_s
+    email
+  end
+
+  def to_label
+    to_s
+  end
+
 
 end
