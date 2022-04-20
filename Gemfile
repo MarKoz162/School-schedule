@@ -25,6 +25,8 @@ gem "omniauth-rails_csrf_protection"
 
 gem 'devise_invitable', '~> 2.0', '>= 2.0.6'
 
+gem 'simple_form', '~> 5.1'
+
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
