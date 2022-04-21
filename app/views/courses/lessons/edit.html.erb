@@ -1,7 +1,7 @@
 <div class="card shadow">
   <div class="card-header">
     <h4>
-      New
+      Edit
       Lesson
     </h4>
   </div>
@@ -9,6 +9,7 @@
     <%= render 'form', lesson: @lesson %>
   </div>
   <div class="card-footer">
-    <%= link_to 'Cancel', lessons_path %>
+    <%= link_to 'Cancel', @course %>
+    <%= link_to 'Delete Lesson', course_lesson_path(@lesson), method: :delete, data: {confirm: "Are you sure?"} %>
   </div>
 </div>

@@ -7,7 +7,7 @@
         <% lessons.each do |lessons| %>
           <div>
             ID:
-            <%= link_to lessons.id, lesson_path(lessons) %> 
+            <%= link_to lessons.id, edit_course_lesson_path(lessons) %> 
             <br>
             Course:
             <%= link_to lessons.course_id, course_path(lessons.course)%>

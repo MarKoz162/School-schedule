@@ -50,12 +50,11 @@ Enrollments
           
             <td><%= enrollment.user %></td>
           
-    
         <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
-
-
-<%= render "lessons/calendar" %>
+<%= link_to "New lesson", new_course_lesson_path(@course), class: "btn btn-primary" %>
+<br>
+<%= render "courses/lessons/calendar" %>

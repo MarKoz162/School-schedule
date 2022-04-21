@@ -41,5 +41,9 @@ class User < ApplicationRecord
     to_s
   end
 
+    has_many :enrollments, dependent: :restrict_with_error
+    has_many :lessons, dependent: :restrict_with_error
+    has_many :attendances, dependent: :restrict_with_error
+    has_many :courses, dependent: :restrict_with_error
 
 end
