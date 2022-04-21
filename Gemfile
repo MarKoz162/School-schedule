@@ -29,6 +29,8 @@ gem 'simple_form', '~> 5.1'
 
 gem 'ice_cube', '~> 0.16.4'
 
+gem 'simple_calendar', '~> 2.4', '>= 2.4.3'
+
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

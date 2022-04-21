@@ -7,6 +7,7 @@
     <%= link_to "New lesson", new_lesson_path, class: 'btn btn-primary' %>
   </div>
 </h3>
+<%= render "calendar" %>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
     <thead>
@@ -35,7 +36,7 @@
           
             <td><%= lesson.classroom %></td>
           
-            <td><%= lesson.course %></td>
+            <td><%= lesson.course_id %></td>
           
             <td><%= lesson.status %></td>
           
