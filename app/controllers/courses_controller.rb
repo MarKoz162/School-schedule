@@ -7,10 +7,17 @@ class CoursesController < ApplicationController
   end
 
   def generate_lessons
-    @course.lessons.where("start > ?" , Time.now).destroy.all
+
+    @course.lessons.where("start > ?" , Time.now).destroy_all
 
     @course.schedule.next_occurrences(8).each do |oc|
       @course.lessons.find_or_create_by(start: oc, user: @course.user, classroom: @course.classroom)
+    end
+
+    @course.lessons.where("start > ?" , Time.now).each do |lesson|
+      @course.enrollments.each do |enrollment|
+        lesson.attendances.find_or_create_by(status: "planned", user: enrollment.user)
+      end
     end
     redirect_to @course
   end

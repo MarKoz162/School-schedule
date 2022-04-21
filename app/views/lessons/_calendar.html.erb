@@ -20,7 +20,7 @@
             <br>
             Start:
             <%= lessons.start.strftime("%H:%M")%>
-            <%= lessons.status%>
+            <%= status_label(lessons.status)%>
             <br>
             <% lessons.attendances.each do |attendance| %>
               <%= attendance.user %>
