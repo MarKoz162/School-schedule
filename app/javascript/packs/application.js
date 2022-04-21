@@ -15,3 +15,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 global.toastr = require("toastr")
+
+require("jquery")
+require("@nathanvda/cocoon")

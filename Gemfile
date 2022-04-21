@@ -31,6 +31,8 @@ gem 'ice_cube', '~> 0.16.4'
 
 gem 'simple_calendar', '~> 2.4', '>= 2.4.3'
 
+gem 'cocoon', '~> 1.2', '>= 1.2.15'
+
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

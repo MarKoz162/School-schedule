@@ -17,6 +17,7 @@ class CoursesController < ApplicationController
 
   def show
     @lessons = @course.lessons
+    @enrollments = @course.enrollments
   end
 
   # GET /courses/new
@@ -74,6 +75,8 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:user_id, :classroom_id, :service_id, :start_time, *Course::DAYS_OF_WEEK)
+      params.require(:course).permit(:user_id, :classroom_id,
+        :service_id, :start_time, *Course::DAYS_OF_WEEK,
+        tasks_attributes: [:id, :user_id, :_destroy])
     end
 end
