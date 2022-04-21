@@ -20,9 +20,11 @@
             <br>
             Start:
             <%= lessons.start.strftime("%H:%M")%>
+            <%= lessons.status%>
             <br>
-            <% lessons.course.enrollments.each do |enrollment| %>
-              <%= enrollment.user %>
+            <% lessons.attendances.each do |attendance| %>
+              <%= attendance.user %>
+              <%= attendance.status %>
             <% end %>
 
           </div>
