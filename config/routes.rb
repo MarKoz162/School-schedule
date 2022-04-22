@@ -20,4 +20,5 @@ Rails.application.routes.draw do
     end
   end
   root 'home#index'
+  get "calendar", to: 'home#calendar'
 end

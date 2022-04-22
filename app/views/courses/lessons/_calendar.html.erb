@@ -4,31 +4,42 @@
       <%= month_calendar(events: @lessons, attribute: :start) do |date, lessons| %>
         <%= date %>
 
-        <% lessons.each do |lessons| %>
-          <div>
-            ID:
-            <%= link_to lessons.id, edit_course_lesson_path(lessons) %> 
-            <br>
-            Course:
-            <%= link_to lessons.course_id, course_path(lessons.course)%>
-            <br>
-            User:
-            <%= link_to lessons.user_id, user_path(lessons.user)%>
-            <br>
-            Clasroom:
-            <%= link_to lessons.classroom_id, classroom_path(lessons.classroom)%>
-            <br>
-            Start:
-            <%= lessons.start.strftime("%H:%M")%>
-            <%= status_label(lessons.status)%>
-            <br>
-            <% lessons.attendances.each do |attendance| %>
-              <%= attendance.user %>
-              <%= attendance.status %>
-            <% end %>
-
-          </div>
-        <% end %>
+        <ul class="list-group">
+          <% lessons.each do |lessons| %>
+            <li class="list-group-item">
+              <%= lessons.start.strftime("%H:%M") %> 
+              <% unless @course.present?%>
+                <br>
+                Course:
+                <%= link_to lessons.course_id, course_path(lessons.course)%>
+              <% end %>
+              <% unless @user.present?%>
+                <br>
+                User:
+                <%= link_to lessons.user.email, user_path(lessons.user)%>
+               <% end %>
+              <% unless @classroom.present?%>
+                <br>
+                Clasroom:
+                <%= link_to lessons.classroom.name, classroom_path(lessons.classroom)%>
+              <% end %>
+              <br>
+              Start:
+              <%= lessons.start.strftime("%H:%M")%>
+              <%= status_label(lessons.status)%>
+              <br>
+               <ul class="list-group">
+                 <li class="list-group-item">
+                  <% lessons.attendances.each do |attendance| %>
+                    <%= attendance.user %>
+                    <%= attendance.status %>
+                  <% end %>
+                </li>
+               </ul>
+            </li>
+          <% end %>
+        </ul>
+        
       <% end %>
     </div>
   </div>
