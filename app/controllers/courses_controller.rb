@@ -6,6 +6,10 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
 
+  def znajdz
+    @courses = Course.where(user_id: 12)
+  end
+
   def generate_lessons
 
     @course.lessons.where("start > ?" , Time.now).destroy_all
